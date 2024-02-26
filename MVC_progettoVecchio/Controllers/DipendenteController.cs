@@ -109,68 +109,128 @@ namespace MVC_progettoVecchio.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit(int? IdUtente)
+
+        public ActionResult Edit(int id)
         {
 
-            if (IdUtente == null)
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            Dipendente DipendenteDaModificare = new Dipendente();
+
+            try
             {
-                return RedirectToAction("Index");
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM Dipendenti WHERE IdUtente = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+
+
+
+                    if (reader.Read())
+                    {
+                        int idUtente = reader.GetInt32(0);
+                        string nomelavoratore = reader.GetString(1);
+                        string cognome = reader.GetString(2);
+                        string Indirizzo = reader.GetString(3);
+                        string CodiceFiscale = reader.GetString(4);
+                        bool coniugato = reader.GetBoolean(5);
+                        int NumFigli = reader.GetInt32(6);
+                        string Mansione = reader.GetString(7);
+
+                        DipendenteDaModificare = new Dipendente(idUtente, nomelavoratore, cognome, Indirizzo, CodiceFiscale, coniugato, NumFigli, Mansione);
+
+                    }
             }
-            else
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return View(DipendenteDaModificare);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Dipendente Dipendente)
+        {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            Dipendente DipendenteDaModificare = new Dipendente();
+
+            try
             {
 
-                string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
-                SqlConnection conn = new SqlConnection(connectionString);
+                conn.Open();
 
-                Dipendente DipendenteDaModificare = new Dipendente();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "UPDATE Dipendenti SET Nome = @Nome, Cognome = @Cognome, Indirizzo = @Indirizzo, CodiceFiscale = @CodiceFiscale, Coniugato = @Coniugato, NumeroFigli = @NumeroFigli, Mansione = @Mansione WHERE IdUtente = @id";
 
-                try
-                {
+                cmd.Parameters.AddWithValue("@Nome", Dipendente.Nome);
+                cmd.Parameters.AddWithValue("@Cognome", Dipendente.Cognome);
+                cmd.Parameters.AddWithValue("@Indirizzo", Dipendente.Indirizzo);
+                cmd.Parameters.AddWithValue("@CodiceFiscale", Dipendente.CodiceFiscale);
+                cmd.Parameters.AddWithValue("@Coniugato", Dipendente.Coniugato);
+                cmd.Parameters.AddWithValue("@NumeroFigli", Dipendente.NumeroFigli);
+                cmd.Parameters.AddWithValue("@Mansione", Dipendente.Mansione);
+                cmd.Parameters.AddWithValue("@id", Dipendente.IdUtente);
 
-                    conn.Open();
+                cmd.ExecuteNonQuery();
 
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM Dipendenti WHERE IdUtente = @id";
-
-                    cmd.Parameters.AddWithValue("@id", IdUtente);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-
-
-
-                        while (reader.Read())
-                        {
-                            int idUtente = reader.GetInt32(0);
-                            string Nome = reader.GetString(1);
-                            string cognome = reader.GetString(2);
-                            string Indirizzo = reader.GetString(3);
-                            string CodiceFiscale = reader.GetString(4);
-                            bool coniugato = reader.GetBoolean(5);
-                            int NumFigli = reader.GetInt32(6);
-                            string Mansione = reader.GetString(7);
-
-                            DipendenteDaModificare = new Dipendente(idUtente, Nome, cognome, Indirizzo, CodiceFiscale, coniugato, NumFigli, Mansione);
-
-                        }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-                return View(DipendenteDaModificare);
             }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return RedirectToAction("Index"); ;
         }
 
 
+        public ActionResult Delete(int id)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
 
+            try
+            {
 
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "DELETE FROM Dipendenti WHERE IdUtente = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return RedirectToAction("Index");
+        }
 
 
 
