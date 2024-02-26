@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MVC_progettoVecchio.Models.Dipendente>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Crea NUovo Utente", "Create" , "Utente" , new {})
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUtente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coniugato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroFigli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mansione)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUtente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cognome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indirizzo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodiceFiscale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coniugato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroFigli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mansione)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifica Dati", "modificaDati", "Dipendente", new { Dipendente = item })
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })**@
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
