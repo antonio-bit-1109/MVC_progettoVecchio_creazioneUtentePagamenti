@@ -12,8 +12,8 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Crea NUovo Utente", "Create" , "Utente" , new {})
+    <p class="btn btn-primary">
+        @Html.ActionLink("Crea Nuovo Utente", "Create" , "Utente" , new {})
     </p>
     <table class="table">
         <tr>
@@ -72,9 +72,9 @@
                     @Html.DisplayFor(modelItem => item.Mansione)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifica Dati", "modificaDati", "Dipendente", new { Dipendente = item })
-                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })**@
+                    @Html.ActionLink("Seleziona Per Modificare", "Edit", "Dipendente", new { id = item.IdUtente }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     
                 </td>
             </tr>
