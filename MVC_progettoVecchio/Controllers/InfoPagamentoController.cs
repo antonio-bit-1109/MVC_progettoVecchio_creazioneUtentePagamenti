@@ -9,19 +9,36 @@ namespace MVC_progettoVecchio.Controllers
 {
     public class InfoPagamentoController : Controller
     {
+        string query;
         // GET: InfoPagamento
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+
             // scrivi la stringa di connessione al database
+
+            if (id == null)
+            {
+                query = "SELECT * FROM InfoPagamenti";
+            }
+            else if (id == 1)
+            {
+                query = "SELECT * FROM InfoPagamenti ORDER BY PeriodoDelPagamento DESC";
+            }
+            else if (id == 2)
+            {
+                query = "SELECT * FROM InfoPagamenti ORDER BY PeriodoDelPagamento ASC";
+            }
+
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
             SqlConnection conn = new SqlConnection(connectionString);
-
             List<InfoPagamento> ListaPagamenti = new List<InfoPagamento>();
+
             try
             {
-                string query;
+
                 conn.Open();
-                query = "SELECT * FROM InfoPagamenti";
+
+
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -61,6 +78,40 @@ namespace MVC_progettoVecchio.Controllers
         // GET: InfoPagamento/Create
         public ActionResult Create()
         {
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            List<int> ListaId = new List<int>();
+
+            try
+            {
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                cmd.CommandText = "SELECT idPagamento FROM InfoPagamenti";
+                using (SqlDataReader reader = cmd.ExecuteReader())
+
+                    while (reader.Read())
+                    {
+                        int idPagamento = reader.GetInt32(0);
+                        ListaId.Add(idPagamento);
+                        Session["listaDegliId"] = ListaId;
+                    }
+
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
             return View();
         }
 

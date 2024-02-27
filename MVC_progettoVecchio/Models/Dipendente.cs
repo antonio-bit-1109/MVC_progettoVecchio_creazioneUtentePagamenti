@@ -1,9 +1,17 @@
-﻿namespace MVC_progettoVecchio.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MVC_progettoVecchio.Models
 {
+    // posso inserire i controlli nel model per evitare di farlo nel controller
     public class Dipendente
     {
         public int IdUtente { get; set; }
+
+        [Required(ErrorMessage = "Inserire il Nome")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessage = "Inserire il Cognome.")]
+        [StringLength(50, MinimumLength = 3)]
         public string Cognome { get; set; }
         public string Indirizzo { get; set; }
         public string CodiceFiscale { get; set; }

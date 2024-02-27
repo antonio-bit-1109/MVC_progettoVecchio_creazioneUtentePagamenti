@@ -156,8 +156,9 @@ namespace MVC_progettoVecchio.Controllers
             {
                 conn.Close();
             }
-            return View(DipendenteDaModificare);
 
+            return View(DipendenteDaModificare);
+            // return View("~/Views/Shared/Error.cshtml");
         }
 
         [HttpPost]
@@ -167,7 +168,7 @@ namespace MVC_progettoVecchio.Controllers
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
             SqlConnection conn = new SqlConnection(connectionString);
 
-            Dipendente DipendenteDaModificare = new Dipendente();
+            // Dipendente DipendenteDaModificare = new Dipendente();
 
             try
             {

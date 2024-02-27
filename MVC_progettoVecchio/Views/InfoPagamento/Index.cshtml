@@ -12,9 +12,16 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
+    <p class="btn btn-primary">
         @Html.ActionLink("Nuovo Pagamento", "Create")
     </p>
+
+    <button class="btn btn-primary">
+        @Html.ActionLink("Ordine Decrescente", "Index", new { id = 1 })
+    </button>
+    <button class="btn btn-primary">
+        @Html.ActionLink("Ordine Crescente", "Index", new { id = 2 })
+    </button>
     <table class="table">
         <tr>
             <th>
