@@ -1,0 +1,90 @@
+﻿@model MVC_progettoVecchio.Models.Dipendente
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dettagli</title>
+</head>
+<body>
+    <div>
+        <h4>Dipendente @Html.DisplayFor(model => model.Nome)</h4>
+        <hr />
+        <dl class="dl-vertical">
+            <dt>
+                @Html.DisplayNameFor(model => model.IdUtente)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdUtente)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cognome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Indirizzo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CodiceFiscale)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Coniugato)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Coniugato)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NumeroFigli)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NumeroFigli)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mansione)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mansione)
+            </dd>
+
+        </dl>
+    </div>
+    <p class="btn btn-primary">
+        @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

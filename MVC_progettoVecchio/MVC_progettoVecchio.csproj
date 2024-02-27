@@ -148,6 +148,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Morph.css" />
+    <Content Include="Content\pene.cur" />
+    <Content Include="Content\Sketch.css" />
     <Content Include="Content\Vapor.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -188,6 +190,7 @@
     <Content Include="Views\InfoPagamento\Index.cshtml" />
     <Content Include="Views\InfoPagamento\Create.cshtml" />
     <Content Include="Views\Dipendente\Edit.cshtml" />
+    <Content Include="Views\Dipendente\Dettagli.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

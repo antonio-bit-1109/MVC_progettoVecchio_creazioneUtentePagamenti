@@ -17,6 +17,7 @@ namespace MVC_progettoVecchio.Controllers
             SqlConnection conn = new SqlConnection(connectionString);
 
             List<Dipendente> Listadipendenti = new List<Dipendente>();
+
             try
             {
                 string query;
@@ -233,7 +234,51 @@ namespace MVC_progettoVecchio.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Dettagli(int id)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
 
+            Dipendente DipendenteDaModificare = new Dipendente();
+
+            try
+            {
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM Dipendenti WHERE IdUtente = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+
+                    while (reader.Read())
+                    {
+                        int idUtente = reader.GetInt32(0);
+                        string nomelavoratore = reader.GetString(1);
+                        string cognome = reader.GetString(2);
+                        string Indirizzo = reader.GetString(3);
+                        string CodiceFiscale = reader.GetString(4);
+                        bool coniugato = reader.GetBoolean(5);
+                        int NumFigli = reader.GetInt32(6);
+                        string Mansione = reader.GetString(7);
+
+                        DipendenteDaModificare = new Dipendente(idUtente, nomelavoratore, cognome, Indirizzo, CodiceFiscale, coniugato, NumFigli, Mansione);
+
+                    }
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return View(DipendenteDaModificare);
+        }
 
 
 

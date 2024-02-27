@@ -17,10 +17,10 @@
     </p>
 
     <button class="btn btn-primary">
-        @Html.ActionLink("Ordine Decrescente", "Index", new { id = 1 })
+        @Html.ActionLink("Ordine Decrescente", "Index", new { id = "1" })
     </button>
     <button style="text-decoration:none" class="btn btn-primary">
-        @Html.ActionLink("Ordine Crescente", "Index", new { id = 2 })
+        @Html.ActionLink("Ordine Crescente", "Index", new { id = "2" })
     </button>
 
     <table class="table mt-5">
@@ -62,9 +62,9 @@
                     @Html.DisplayFor(modelItem => item.idLavoratore)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("DettagliFattura", "DettagliPagamento", new {  id = item.IdPagamento }) |
+                    @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
         }

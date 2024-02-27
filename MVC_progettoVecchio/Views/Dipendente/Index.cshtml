@@ -73,7 +73,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Seleziona Per Modificare", "Edit", new { id = item.IdUtente }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Visualizza Dettagli", "Dettagli", new {  id=item.IdUtente }) |
                     @Html.ActionLink("Cancella", "Delete", new {  id= item.IdUtente })
                     
                 </td>

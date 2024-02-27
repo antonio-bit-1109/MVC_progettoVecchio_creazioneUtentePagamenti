@@ -11,7 +11,7 @@ namespace MVC_progettoVecchio.Controllers
     {
         string query;
         // GET: InfoPagamento
-        public ActionResult Index(int? id)
+        public ActionResult Index(string id)
         {
 
             // scrivi la stringa di connessione al database
@@ -20,11 +20,11 @@ namespace MVC_progettoVecchio.Controllers
             {
                 query = "SELECT * FROM InfoPagamenti";
             }
-            else if (id == 1)
+            else if (id == "1")
             {
                 query = "SELECT * FROM InfoPagamenti ORDER BY PeriodoDelPagamento DESC";
             }
-            else if (id == 2)
+            else if (id == "2")
             {
                 query = "SELECT * FROM InfoPagamenti ORDER BY PeriodoDelPagamento ASC";
             }
@@ -152,85 +152,41 @@ namespace MVC_progettoVecchio.Controllers
             }
 
             return View();
-            //try
-            //{
-
-            //    conn.Open();
-
-            //    SqlCommand cmd = new SqlCommand();
-            //    cmd.Connection = conn;
-
-            //    cmd.CommandText = "INSERT INTO Dipendenti (Nome, Cognome, Indirizzo, CodiceFiscale, Coniugato, NumeroFigli, Mansione)" +
-            //        " VALUES (@nome , @cognome , @Indirizzo , @CodicaFiscale , @Coniugato , @NumFigli , @Mansione)";
-            //    cmd.Parameters.AddWithValue("@Nome", ObjDipendente.Nome);
-            //    cmd.Parameters.AddWithValue("@Cognome", ObjDipendente.Cognome);
-            //    cmd.Parameters.AddWithValue("@Indirizzo", ObjDipendente.Indirizzo);
-            //    cmd.Parameters.AddWithValue("@CodicaFiscale", ObjDipendente.CodiceFiscale);
-            //    cmd.Parameters.AddWithValue("@Coniugato", ObjDipendente.Coniugato);
-            //    cmd.Parameters.AddWithValue("@NumFigli", ObjDipendente.NumeroFigli);
-            //    cmd.Parameters.AddWithValue("@Mansione", ObjDipendente.Mansione);
-
-            //    cmd.ExecuteNonQuery();
-
-
-            //    // TODO: Add insert logic here
-
-            //    return RedirectToAction("Index");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write(ex.Message);
-            //}
-            //finally
-            //{
-            //    conn.Close();
-            //}
-
 
         }
 
-        // GET: InfoPagamento/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        public ActionResult DettagliPagamento(int id)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+            InfoPagamento ObjPagamento = new InfoPagamento();
+            try
+            {
+                conn.Open();
 
-        // POST: InfoPagamento/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM InfoPagamenti WHERE IdPagamento = @id";
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+                SqlDataReader reader = cmd.ExecuteReader();
 
-        // GET: InfoPagamento/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+                while (reader.Read())
+                {
 
-        // POST: InfoPagamento/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+                }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return View();
+        }
+
     }
 }
