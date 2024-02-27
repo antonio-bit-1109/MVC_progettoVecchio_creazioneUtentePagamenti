@@ -6,32 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Applicazione ASP.NET</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/Morph.css") <!-- Aggiunta del link al foglio di stile unmin.css -->
+    @Styles.Render("~/Content/Vapor.css") <!-- Aggiunta del link al foglio di stile unmin.css -->
     @Scripts.Render("~/bundles/modernizr")
     
 </head>
-<body>   
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <div class="ms-auto">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor04">
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li> @Html.ActionLink("Lista Dei Dipendenti", "Index", "Dipendente", null, new { @class = "nav-link" })</li>
-                        <li> @Html.ActionLink("Riepilogo Pagamenti", "Index", "InfoPagamento", null, new { @class = "nav-link" })</li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> Lezzo e Fiero</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li> @Html.ActionLink("Lista Dei Dipendenti", "Index", "Dipendente", null, new { @class = "nav-link" })</li>
+                    <li> @Html.ActionLink("Riepilogo Pagamenti", "Index", "InfoPagamento", null, new { @class = "nav-link" })</li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </div>
-       
     </nav>
     <div class="container body-content">
         @RenderBody()

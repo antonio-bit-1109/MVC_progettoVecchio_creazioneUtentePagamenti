@@ -12,17 +12,18 @@
     <title>Index</title>
 </head>
 <body>
-    <p class="btn btn-primary">
+    <p class="btn btn-primary m-0">
         @Html.ActionLink("Nuovo Pagamento", "Create")
     </p>
 
     <button class="btn btn-primary">
         @Html.ActionLink("Ordine Decrescente", "Index", new { id = 1 })
     </button>
-    <button class="btn btn-primary">
+    <button style="text-decoration:none" class="btn btn-primary">
         @Html.ActionLink("Ordine Crescente", "Index", new { id = 2 })
     </button>
-    <table class="table">
+
+    <table class="table mt-5">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdPagamento)
