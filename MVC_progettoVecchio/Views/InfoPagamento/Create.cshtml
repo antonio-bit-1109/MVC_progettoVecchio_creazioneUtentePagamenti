@@ -13,7 +13,11 @@
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
 </head>
-<body>
+<body> 
+    @* posso inserire nel BeginForm il nome del metodo che voglio richiamare, 
+        nel metodo posso usare il parametro post per prendere tutti i campi del form,
+        fare i request all interno dell action e prendere i campi form che mi interessano ,
+        oppure inserire nei parametri dell action i campi del form che mi servono *@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()

@@ -69,9 +69,13 @@ namespace MVC_progettoVecchio.Controllers
         [HttpPost]
         public ActionResult Create(Dipendente ObjDipendente)
         {
+            if (ObjDipendente.NumeroFigli < 0)
+            {
+                ObjDipendente.NumeroFigli = 0;
+            }
+
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
             SqlConnection conn = new SqlConnection(connectionString);
-
 
             try
             {

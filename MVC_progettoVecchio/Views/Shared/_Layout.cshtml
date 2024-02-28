@@ -11,7 +11,7 @@
     
 </head>
 <body>
-    
+
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"> Eddaie </a>
@@ -20,8 +20,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
-                    <li> @Html.ActionLink("Lista Dei Dipendenti", "Index", "Dipendente", null, new { @class = "nav-link" })</li>
-                    <li> @Html.ActionLink("Riepilogo Pagamenti", "Index", "InfoPagamento", null, new { @class = "nav-link" })</li>
+                    <li> @Html.ActionLink("Lista Dei Dipendenti", "Index", "Dipendente", null, new { @class = "nav-link text-success" })</li>
+                    <li> @Html.ActionLink("Riepilogo Pagamenti", "Index", "InfoPagamento", null, new { @class = "nav-link text-info" })</li>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-sm-2" type="search" placeholder="Search">
@@ -41,5 +41,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
 </body>
 </html>
