@@ -1,0 +1,66 @@
+﻿@model MVC_progettoVecchio.Models.InfoPagamento
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DettagliPagamento</title>
+</head>
+<body>
+    <div>
+        <h4>InfoPagamento</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.IdPagamento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IdPagamento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PeriodoDelPagamento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PeriodoDelPagamento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoDiPagamento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoDiPagamento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Importo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Importo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.idLavoratore)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.idLavoratore)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

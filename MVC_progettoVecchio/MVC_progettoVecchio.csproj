@@ -191,6 +191,7 @@
     <Content Include="Views\InfoPagamento\Create.cshtml" />
     <Content Include="Views\Dipendente\Edit.cshtml" />
     <Content Include="Views\Dipendente\Dettagli.cshtml" />
+    <Content Include="Views\InfoPagamento\DettagliPagamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

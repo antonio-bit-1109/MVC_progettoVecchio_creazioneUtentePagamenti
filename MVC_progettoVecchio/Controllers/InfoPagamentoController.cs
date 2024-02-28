@@ -167,12 +167,23 @@ namespace MVC_progettoVecchio.Controllers
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "SELECT * FROM InfoPagamenti WHERE IdPagamento = @id";
+                cmd.Parameters.AddWithValue("@id", id);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
+                    int idpagamento = reader.GetInt32(0);
+                    DateTime periodoDelPagamento = reader.GetDateTime(1);
+                    string TipoDiPagamento = reader.GetString(2);
+                    decimal Importo = reader.GetDecimal(3);
+                    int Idlavoratore = reader.GetInt32(4);
 
+                    ObjPagamento.IdPagamento = idpagamento;
+                    ObjPagamento.PeriodoDelPagamento = Convert.ToDateTime(periodoDelPagamento);
+                    ObjPagamento.TipoDiPagamento = TipoDiPagamento;
+                    ObjPagamento.Importo = Convert.ToDecimal(Importo);
+                    ObjPagamento.idLavoratore = Idlavoratore;
                 }
 
             }
@@ -185,7 +196,7 @@ namespace MVC_progettoVecchio.Controllers
                 conn.Close();
             }
 
-            return View();
+            return View(ObjPagamento);
         }
 
     }
